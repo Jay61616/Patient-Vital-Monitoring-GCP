@@ -1,0 +1,13 @@
+pip install apache-beam[gcp] python-dotenv 
+
+export $(grep -v '^#' .env | xargs) 
+
+
+
+python streaming_medallion_pipeline.py  
+--runner DataflowRunner  
+--project $GCP_PROJECT  
+--region $REGION  
+--staging_location $STAGING_LOCATION  
+--temp_location $TEMP_LOCATION  
+--streaming 
